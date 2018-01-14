@@ -10,7 +10,6 @@ from MinProd.server.controllers.error import ErrorController
 from MinProd.server.controllers.security import SecurityController
 
 
-
 #global variables
 auth = HTTPBasicAuth()
 auto = Autodoc(app)
