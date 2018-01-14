@@ -18,7 +18,6 @@ auto = Autodoc(app)
 '''********************************************************************
 Public Routes
 ********************************************************************'''
-# ping server
 @app.route('/ping', methods=['GET'])
 @auto.doc(groups=['public'])
 def ping():
