@@ -99,3 +99,8 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# Custom additions
+config.py
+gunicorn.py.ini
+curl_examples.txt
