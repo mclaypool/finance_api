@@ -1,5 +1,5 @@
-from sqlalchemy import Column, Date, String, Integer, func
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Date, String, Integer, func
 from passlib.hash import cta_pbkdf2_sha1
 from passlib.apps import custom_app_context as pwd_context
 from itsdangerous import (TimedJSONWebSignatureSerializer
@@ -11,10 +11,9 @@ from MinProd import app
 
 Base = declarative_base()
 
-
 class User(Base):
     __tablename__ = 'User'
-    id            = Column(Integer, primary_key = True)
+    id            = Column(Integer, primary_key=True)
     Username      = Column(String(32))
     PasswordHash  = Column(String(128))
     Token         = Column(String(34))
