@@ -6,6 +6,7 @@ from flask_autodoc.autodoc import Autodoc
 from MinProd import app
 from MinProd.server.controllers.data import DataController
 from MinProd.server.controllers.ping import PingController
+from MinProd.server.controllers.loan import LoanController
 from MinProd.server.controllers.error import ErrorController 
 from MinProd.server.controllers.security import SecurityController
 
@@ -24,6 +25,32 @@ def ping():
     '''Route to ping server'''
     try: 
         return PingController.get_ping_json()
+    except Exception as e:
+        abort(ErrorController.handle_errors(e))
+
+
+# Loan routes ---------------------------------------------------------
+@app.route('/loan/monthlypayment', methods=['GET'])
+@auto.doc(groups=['public'])
+def monthlypayment():
+    '''
+    Caclulcates the monthly payment for a loan
+
+    Required payload is json stucture as the following:
+    { "loan_terms":
+        {
+            "yearly_rate":"0.04"
+            , "length_years":"5"
+            , "loan_amount":"10000"
+        }
+    }
+    '''
+    try:
+        loan = request.json.get('loan_terms')
+        rate = loan['yearly_rate']
+        years = loan['length_years']
+        amount = loan['loan_amount']
+        return LoanController.calc_monthly_payment(rate, years, amount)
     except Exception as e:
         abort(ErrorController.handle_errors(e))
 
