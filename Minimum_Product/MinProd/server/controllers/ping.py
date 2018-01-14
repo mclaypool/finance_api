@@ -1,17 +1,8 @@
-from flask import jsonify
+from MinProd import app
+from MinProd.server.views.ping import PingView
 
 
 class PingController():
     @staticmethod
     def get_ping_json():
-        output = jsonify({
-            'links':
-            [{
-                'rel':'help.public',
-                'href':'http://localhost/help'
-            },{
-                'rel':'token',
-                'href':'https://localhost/token'
-            }]
-        })
-        return output
+        return PingView.display_response_json();
