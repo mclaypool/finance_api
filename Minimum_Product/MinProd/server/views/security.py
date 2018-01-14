@@ -13,3 +13,7 @@ class SecurityView():
         })
 
         return output
+
+    @staticmethod
+    def display_unauthorized():
+        return jsonify({ 'Error': '401 UNAUTHORIZED'})

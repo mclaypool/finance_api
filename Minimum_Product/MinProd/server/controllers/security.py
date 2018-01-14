@@ -18,7 +18,7 @@ class SecurityController():
         user = dc.get_user_by_username(username)
         
         if not user or not user.verify_password(password):
-            return jsonify({ 'Error': '401 UNAUTHORIZED'})
+            return SecurityView.display_unauthorized()
 
         token = user.generate_auth_token(dc)
         return SecurityView.display_token_json(token)
