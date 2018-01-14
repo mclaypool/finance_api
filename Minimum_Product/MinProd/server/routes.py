@@ -103,10 +103,11 @@ def verify_token(token, password):
     except Exception as e:
         abort(ErrorController.handle_errors(e))
 
-
+'''
 @app.route('/user/new', methods=['POST'])
 def new_user():
     username = request.json.get('username')
     password = request.json.get('password')
     dc = DataController()
     return dc.new_user(username, password), 201
+'''
