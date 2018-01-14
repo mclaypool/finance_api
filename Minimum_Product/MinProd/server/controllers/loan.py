@@ -6,56 +6,67 @@ from MinProd.server.views.loan import LoanView
 class LoanController():
     # Payments --------------------------------------------------------
     @staticmethod
-    def calc_monthly_payment(yearly_rate, length_years, loan_amount):
-        # pmt = (r * PV) / (1 - (1 + r)^-n)
-        period_rate = float(yearly_rate) / 12
-        periods = int(length_years) * 12
-        pv = float(loan_amount)
+    def get_monthly_payment(loan_terms):
+        yrate = loan_terms['yearly_rate']
+        years = loan_terms['length_years']
+        amount = loan_terms['loan_amount']
 
-        payment = period_rate * pv / (1 - (1 + period_rate) ** -periods)
-        payment = round(payment, 2)
-
-        return LoanView.display_monthly_payment(payment)
+        return LoanView.display_basic('Monthly Payment', 
+            Loan.calc_monthly_payment(yrate, years, amount))
 
 
     @staticmethod
-    def calc_payment_ppart():
-        return None
+    def get_payment_ppart():
+        return LoanView.display_basic('Principle Part', 
+            Loan.calc_payment_ppart())
 
 
     @staticmethod
-    def calc_payment_ipart():
-        return None
+    def get_payment_ipart():
+        return LoanView.display_basic('Interest Part',
+            Loan.calc_payment_ipart())
 
 
     # Principle -------------------------------------------------------
     @staticmethod
-    def calc_principle_paid():
-        return None
+    def get_principle_paid():
+        return LoanView.display_basic('Principle Paid',
+            Loan.calc_principle_paid())
 
 
     @staticmethod
-    def calc_principle_remaining():
-        return None
+    def get_principle_remaining():
+        return LoanView.display_basic('Principle Remaining',
+            Loan.calc_principle_remaining())
 
 
     # Interest --------------------------------------------------------
     @staticmethod
-    def calc_total_interest():
-        return None
+    def get_total_interest():
+        return LoanView.display_basic('Total Interest',
+            Loan.calc_total_interest())
 
 
     @staticmethod
-    def calc_interest_paid():
-        return None
+    def get_interest_paid():
+        return LoanView.display_basic('Interest Paid',
+            Loan.calc_interest_paid())
 
 
     @staticmethod
-    def calc_interest_remaining():
-        return None
+    def get_interest_remaining():
+        return LoanView.display_basic('Interest Remaining',
+            Loan.calc_interest_remaining())
+
+
+    @staticmethod
+    def get_total_cost():
+        return LoanView.display_basic('Total Cost',
+            Loan.calc_total_cost())
 
 
     # Charting --------------------------------------------------------
     @staticmethod
     def get_amortization_schedule():
-        return None
+        return LoanView.display_amortization_schedule(
+            Loan.calc_amortization_schedule())

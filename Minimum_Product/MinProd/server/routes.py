@@ -46,11 +46,8 @@ def monthlypayment():
     }
     '''
     try:
-        loan = request.json.get('loan_terms')
-        rate = loan['yearly_rate']
-        years = loan['length_years']
-        amount = loan['loan_amount']
-        return LoanController.calc_monthly_payment(rate, years, amount)
+        loan_terms = request.json.get('loan_terms')
+        return LoanController.get_monthly_payment(loan_terms)
     except Exception as e:
         abort(ErrorController.handle_errors(e))
 

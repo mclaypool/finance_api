@@ -1,20 +1,10 @@
 from flask import jsonify
 
+from MinProd import app
+from MinProd.server.views.base import BaseView
 
-class LoanView():
-    # Payments --------------------------------------------------------
+
+class LoanView(BaseView):
     @staticmethod
-    def display_monthly_payment(payment):
-        return jsonify({ 'Monthly Payment': str(payment)})
-
-
-    # Principle -------------------------------------------------------
-
-
-
-    # Interest --------------------------------------------------------
-
-
-
-    # Charting --------------------------------------------------------
-
+    def display_amortization_schedule():
+        return None
