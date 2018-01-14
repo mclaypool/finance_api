@@ -7,7 +7,6 @@ from MinProd import app
 from MinProd.server.models.user import User
 
 
-
 class DataController:
     def __init__(self):
         #set up sqlalchemy
