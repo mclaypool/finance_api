@@ -10,7 +10,7 @@ from MinProd.server.controllers.error import ErrorController
 from MinProd.server.controllers.security import SecurityController
 
 
-#global variables
+# global variables
 auth = HTTPBasicAuth()
 auto = Autodoc(app)
 
@@ -18,7 +18,7 @@ auto = Autodoc(app)
 '''********************************************************************
 Public Routes
 ********************************************************************'''
-#ping server
+# ping server
 @app.route('/ping', methods=['GET'])
 @auto.doc(groups=['public'])
 def ping():
@@ -30,7 +30,7 @@ def ping():
 
 
 '''********************************************************************
-#Documention Routes
+Documention Routes
 ********************************************************************'''
 @app.route('/help')
 @auto.doc(groups=['public'])
@@ -53,7 +53,7 @@ def doc_private():
         abort(ErrorController.handle_errors(e))
 
 
-#return columns for a specific table
+# return columns for a specific table
 @app.route('/<string:table_name>/columns', methods=['GET'])
 @auto.doc(groups=['private'])
 @auth.login_required
@@ -68,9 +68,9 @@ def get_typesof_columns(table_name):
 
 
 '''********************************************************************
-#Authentication and User MGMT
+Authentication and User MGMT
 ********************************************************************'''
-#get token
+# get token
 @app.route('/token/<string:username>/<string:password>', methods=['GET'])
 @auto.doc(groups=['public'])
 def generate_auth_token(username, password):
@@ -92,7 +92,7 @@ def generate_auth_token(username, password):
         abort(ErrorController.handle_errors(e))
 
 
-#auth with token
+# auth with token
 @auth.verify_password
 def verify_token(token, password):
     try:

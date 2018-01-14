@@ -6,7 +6,7 @@ from itsdangerous import (TimedJSONWebSignatureSerializer
     as Serializer, BadSignature, SignatureExpired)
 
 from MinProd import app
-#from MinProd.server.models.base import Base
+# from MinProd.server.models.base import Base
 
 
 Base = declarative_base()
@@ -43,7 +43,7 @@ class User(Base):
         return True
 
 
-#table build query and main temp
+# table build query -- Need to make migration file
 '''
 CREATE TABLE User(
     id INTEGER PRIMARY KEY

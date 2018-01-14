@@ -10,5 +10,3 @@ class MortgageController():
     @staticmethod
     def get_total_cost():
         return None
-
-    

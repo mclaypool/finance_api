@@ -9,7 +9,7 @@ from MinProd.server.models.user import User
 
 class DataController:
     def __init__(self):
-        #set up sqlalchemy
+        # set up sqlalchemy
         self.engine = create_engine(
             app.config['MINPRODDB']['conn'], 
             echo=False)
@@ -18,7 +18,7 @@ class DataController:
         self.session._model_changes = {}
 
 
-    #SqlAlchemy functions
+    # SqlAlchemy functions
     def get_typesof_columns(self, table):
         insp = reflection.Inspector.from_engine(self.engine)
         return insp.get_columns(table)
