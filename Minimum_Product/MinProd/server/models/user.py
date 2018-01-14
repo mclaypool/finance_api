@@ -1,5 +1,5 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Date, String, Integer, func
+from sqlalchemy import Column, Date, String, Integer
 from passlib.hash import cta_pbkdf2_sha1
 from passlib.apps import custom_app_context as pwd_context
 from itsdangerous import (TimedJSONWebSignatureSerializer
