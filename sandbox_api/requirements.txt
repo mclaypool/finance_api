@@ -1,12 +1,15 @@
-adium-theme-ubuntu==0.3.4
 certifi==2017.11.5
 chardet==3.0.4
 click==6.7
+enum34==1.1.6
+eventlet==0.22.0
 Flask==0.12.2
 Flask-Autodoc==0.1.2
 Flask-HTTPAuth==3.2.3
 Flask-OAuthlib==0.9.4
 Flask-SSLify==0.1.5
+greenlet==0.4.12
+gunicorn==19.7.1
 idna==2.6
 itsdangerous==0.24
 Jinja2==2.10
@@ -16,7 +19,7 @@ passlib==1.7.1
 requests==2.18.4
 requests-oauthlib==0.8.0
 SQLAlchemy==1.2.0
-unity-lens-photos==1.0
 urllib3==1.22
 virtualenv==15.1.0
 Werkzeug==0.14.1
+
