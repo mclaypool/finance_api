@@ -1,15 +1,15 @@
 # finance_api
-## A powerful financial calculator for loans, mortgages, cars and all around personal finance.
-======
+### A powerful financial calculator for loans, mortgages, cars and all around personal finance.
+
 
 # Overview
-======
-## There will be three parts to this app:
+
+### There will be three parts to this app:
 * A micro Flask API that's a sandbox for testing equtions and ideas without a lot of effort
 * An API to be built with Flask AppBuilder or Django Rest Framework
 * A detached UI, to be built with Angular, React or Vue.js
 
-## Features
+### Features
 * Create an account to save work
 * Export to CSV or JSON
 
