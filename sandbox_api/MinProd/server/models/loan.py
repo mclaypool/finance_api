@@ -68,7 +68,7 @@ class Loan(Base):
         return None
 
 
-    # Totals --------------------------------------------------------
+    # Totals ----------------------------------------------------------
     @staticmethod
     def calc_total_cost(apr, years, amount):
         total_cost = Loan.calc_monthly_payment(apr, years, amount) 
@@ -88,6 +88,12 @@ class Loan(Base):
         total_remaining = total_remaining - total_payments
 
         return round(total_remaining, 2)
+
+
+    # Dates ----------------------------------------------------------
+    @staticmethod
+    def estimate_payoff_date():
+        return 0
 
 
     # Charting --------------------------------------------------------
