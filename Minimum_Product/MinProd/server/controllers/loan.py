@@ -7,12 +7,12 @@ class LoanController():
     # Payments --------------------------------------------------------
     @staticmethod
     def get_monthly_payment(loan_terms):
-        yrate = loan_terms['yearly_rate']
-        years = loan_terms['length_years']
-        amount = loan_terms['loan_amount']
+        rate = loan_terms['apr']
+        years = loan_terms['years']
+        amount = loan_terms['amount']
 
         return LoanView.display_basic('Monthly Payment', 
-            Loan.calc_monthly_payment(yrate, years, amount))
+            Loan.calc_monthly_payment(rate, years, amount))
 
 
     @staticmethod
@@ -42,9 +42,13 @@ class LoanController():
 
     # Interest --------------------------------------------------------
     @staticmethod
-    def get_total_interest():
+    def get_total_interest(loan_terms):
+        rate = loan_terms['apr']
+        years = loan_terms['years']
+        amount = loan_terms['amount']
+
         return LoanView.display_basic('Total Interest',
-            Loan.calc_total_interest())
+            Loan.calc_total_interest(rate, years, amount))
 
 
     @staticmethod
@@ -58,11 +62,27 @@ class LoanController():
         return LoanView.display_basic('Interest Remaining',
             Loan.calc_interest_remaining())
 
+    # Totals --------------------------------------------------------
+    @staticmethod
+    def get_total_cost(loan_terms):
+        rate = loan_terms['apr']
+        years = loan_terms['years']
+        amount = loan_terms['amount']
+
+        return LoanView.display_basic('Total Cost',
+            Loan.calc_total_cost(rate, years, amount))
+
 
     @staticmethod
-    def get_total_cost():
-        return LoanView.display_basic('Total Cost',
-            Loan.calc_total_cost())
+    def get_total_remaining(loan_terms):
+        rate = loan_terms['apr']
+        years = loan_terms['years']
+        amount = loan_terms['amount']
+        current_period = loan_terms['current_period']
+
+        return LoanView.display_basic('Total Remaining',
+            Loan.calc_total_remaining(
+                rate, years, amount, current_period))
 
 
     # Charting --------------------------------------------------------

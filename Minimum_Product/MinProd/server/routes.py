@@ -32,16 +32,16 @@ def ping():
 # Loan routes ---------------------------------------------------------
 @app.route('/loan/monthlypayment', methods=['GET'])
 @auto.doc(groups=['public'])
-def monthlypayment():
+def monthly_payment():
     '''
     Caclulcates the monthly payment for a loan
 
-    Required payload is json stucture as the following:
+    Required payload is json stucture like the following:
     { "loan_terms":
         {
-            "yearly_rate":"0.04"
-            , "length_years":"5"
-            , "loan_amount":"10000"
+            "apr":0.04
+            , "years":5
+            , "amount":10000
         }
     }
     '''
@@ -50,6 +50,73 @@ def monthlypayment():
         return LoanController.get_monthly_payment(loan_terms)
     except Exception as e:
         abort(ErrorController.handle_errors(e))
+
+
+@app.route('/loan/totalinterest', methods=['GET'])
+@auto.doc(groups=['public'])
+def total_interest():
+    '''
+    Caclulcates the total interest for a loan
+
+    Required payload is json stucture like the following:
+    { "loan_terms":
+        {
+            "apr":0.04
+            , "years":5
+            , "amount":10000
+        }
+    }
+    '''
+    try:
+        loan_terms = request.json.get('loan_terms')
+        return LoanController.get_total_interest(loan_terms)
+    except Exception as e:
+        abort(ErrorController.handle_errors(e))
+
+
+@app.route('/loan/totalcost', methods=['GET'])
+@auto.doc(groups=['public'])
+def total_cost():
+    '''
+    Caclulcates the total cost, principle and interest, for a loan
+
+    Required payload is json stucture like the following:
+    { "loan_terms":
+        {
+            "apr":0.04
+            , "years":5
+            , "amount":10000
+        }
+    }
+    '''
+    try:
+        loan_terms = request.json.get('loan_terms')
+        return LoanController.get_total_cost(loan_terms)
+    except Exception as e:
+        abort(ErrorController.handle_errors(e))
+
+
+@app.route('/loan/totalremaining', methods=['GET'])
+@auto.doc(groups=['public'])
+def total_remaining():
+    '''
+    Caclulcates the total cost, principle and interest, for a loan
+
+    Required payload is json stucture like the following:
+    { "loan_terms":
+        {
+            "apr":0.04
+            , "years":5
+            , "amount":10000
+            , "current_period":3
+        }
+    }
+    '''
+    #try:
+    loan_terms = request.json.get('loan_terms')
+    return LoanController.get_total_remaining(loan_terms)
+    #except Exception as e:
+    #    abort(ErrorController.handle_errors(e))
 
 
 '''********************************************************************

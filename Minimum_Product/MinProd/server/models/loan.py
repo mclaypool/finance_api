@@ -8,27 +8,24 @@ from MinProd import app
 
 Base = declarative_base()
 
+# https://www.bankrate.com/calculators/mortgages/loan-calculator.aspx
 class Loan(Base):
     __tablename__   = 'Loan'
     id              = Column(Integer, primary_key=True)
-    yearly_rate     = Column(Float)
-    length_years    = Column(Integer)
-    loan_amount     = Column(Float)
+    apr             = Column(Float)
+    years           = Column(Float)
+    amount          = Column(Float)
     date_created    = Column(DateTime, nullable=False)
     date_modified   = Column(DateTime, nullable=False)
-    created_by = Column(Integer, ForeignKey('User.id'), nullable=False)
+    created_by  = Column(Integer, ForeignKey('User.id'), nullable=False)
     modified_by = Column(Integer, ForeignKey('User.id'), nullable=False)
 
 
     # Payments --------------------------------------------------------
     @staticmethod
-    def calc_monthly_payment(yearly_rate, length_years, loan_amount):
+    def calc_monthly_payment(apr, years, amount):
         # pmt = (r * PV) / (1 - (1 + r)^-n)
-        period_rate = float(yearly_rate) / 12
-        periods = int(length_years) * 12
-        pv = float(loan_amount)
-
-        payment = period_rate * pv / (1 - (1 + period_rate) ** -periods)
+        payment = (apr/12)*amount / (1 - (1 + apr/12)**-(years*12))
         return round(payment, 2)
 
 
@@ -55,8 +52,10 @@ class Loan(Base):
 
     # Interest --------------------------------------------------------
     @staticmethod
-    def calc_total_interest():
-        return None
+    def calc_total_interest(apr, years, amount):
+        total_interest = Loan.calc_total_cost(apr, years, amount)
+        total_interest = total_interest - amount
+        return round(total_interest, 2)
 
 
     @staticmethod
@@ -69,10 +68,26 @@ class Loan(Base):
         return None
 
 
+    # Totals --------------------------------------------------------
     @staticmethod
-    def calc_total_cost():
-        total_cost = principle + calc_total_interest()
-        return LoanView.display_total_cost(total_cost)
+    def calc_total_cost(apr, years, amount):
+        total_cost = Loan.calc_monthly_payment(apr, years, amount) 
+        total_cost = total_cost * 12 * years
+        return round(total_cost, 2)
+
+
+    @staticmethod
+    def calc_total_remaining(apr, years, amount, current_period):
+        # http://financeformulas.net/Remaining_Balance_Formula.html
+        t = current_period
+
+        total_payments = Loan.calc_monthly_payment(apr, years, amount)
+        total_payments = total_payments * ( ((1 + apr)**t - 1) / apr )
+
+        total_remaining = Loan.calc_total_cost(apr, years, amount)
+        total_remaining = total_remaining - total_payments
+
+        return round(total_remaining, 2)
 
 
     # Charting --------------------------------------------------------
