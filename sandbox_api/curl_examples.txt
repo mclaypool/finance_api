@@ -1,0 +1,46 @@
+curl -i -X POST -H "Content-Type: application/json" -d '{"username":"mclaypool","password":"python"}' http://127.0.0.1:5000/user/new
+
+
+curl -i -X GET -H "Content-Type: application/json" -d '{"username":"mclaypool","password":"python"}' http://127.0.0.1:5000/token/mclaypool/python
+
+
+curl -u token:unused -i -X GET http://127.0.0.1:5000/help/private
+curl -u token:unused -i -X GET http://127.0.0.1:5000/user/columns
+
+
+
+
+curl -i -X GET -H "Content-Type: application/json" -d '{"loan_terms": {"apr":0.04,"years":5, "amount":10000, "yearly_compounds":12}}' http://104.131.57.2/loan/payments
+
+
+
+# Payments --------------------------------------------------------
+curl -i -X GET -H "Content-Type: application/json" -d '{"loan_terms": {"apr":0.04,"years":5, "amount":10000, "yearly_compounds":12}}' http://127.0.0.1:5000/loan/payments
+
+curl -i -X GET -H "Content-Type: application/json" -d '{"loan_terms": {"apr":0.04,"years":5, "amount":10000, "yearly_compounds":12, "current_period": 30}}' http://127.0.0.1:5000/loan/payment_ppart
+
+curl -i -X GET -H "Content-Type: application/json" -d '{"loan_terms": {"apr":0.04,"years":5, "amount":10000, "yearly_compounds":12, "current_period": 30}}' http://127.0.0.1:5000/loan/payment_ipart
+
+
+# Principle -------------------------------------------------------
+curl -i -X GET -H "Content-Type: application/json" -d '{"loan_terms": {"apr":0.04,"years":5, "amount":10000, "yearly_compounds":12, "current_period": 30}}' http://127.0.0.1:5000/loan/principle_paid
+
+curl -i -X GET -H "Content-Type: application/json" -d '{"loan_terms": {"apr":0.04,"years":5, "amount":10000, "yearly_compounds":12, "current_period": 30}}' http://127.0.0.1:5000/loan/principle_remaining
+
+
+# Interest --------------------------------------------------------
+curl -i -X GET -H "Content-Type: application/json" -d '{"loan_terms": {"apr":0.04,"years":5, "amount":10000, "yearly_compounds":12}}' http://127.0.0.1:5000/loan/total_interest
+
+curl -i -X GET -H "Content-Type: application/json" -d '{"loan_terms": {"apr":0.04,"years":5, "amount":10000, "yearly_compounds":12, "current_period": 30}}' http://127.0.0.1:5000/loan/interest_paid
+
+curl -i -X GET -H "Content-Type: application/json" -d '{"loan_terms": {"apr":0.04,"years":5, "amount":10000, "yearly_compounds":12, "current_period": 30}}' http://127.0.0.1:5000/loan/interest_remaining
+
+
+# Totals ----------------------------------------------------------
+curl -i -X GET -H "Content-Type: application/json" -d '{"loan_terms": {"apr":0.04,"years":5, "amount":10000, "yearly_compounds":12}}' http://127.0.0.1:5000/loan/total_cost
+
+curl -i -X GET -H "Content-Type: application/json" -d '{"loan_terms": {"apr":0.04,"years":5, "amount":10000, "yearly_compounds":12, "current_period": 60}}' http://127.0.0.1:5000/loan/total_remaining
+
+
+# Charting --------------------------------------------------------
+curl -i -X GET -H "Content-Type: application/json" -d '{"loan_terms": {"apr":0.04,"years":5, "amount":10000, "yearly_compounds":12}}' http://127.0.0.1:5000/loan/amortize
