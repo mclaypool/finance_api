@@ -62,3 +62,5 @@
       * https://www.quicken.com/budget-calculator
 
 
+![alt text](finance_api/documentation/loan_compare.JPG "Loan Comparison GUI Example")
+
