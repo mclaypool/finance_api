@@ -69,7 +69,7 @@ class TestLoan(unittest.TestCase):
     # Charting --------------------------------------------------------
     def test_amortization_sched(self):
         # TODO: should be 5249.38 
-        result = Loan.calc_amort_sched(0.04, 5, 10000, 12)
+        result = Loan.amortize_loan(0.04, 5, 10000, 12)
         #print(result)
         self.assertEqual(result[30][3], 5249.21)
 

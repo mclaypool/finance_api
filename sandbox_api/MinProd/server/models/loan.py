@@ -41,7 +41,7 @@ class Loan(Base):
     def calc_payment_ppart(
         apr, years, amount, yearly_compounds, current_period):
 
-        amort_sched = Loan.calc_amort_sched(
+        amort_sched = Loan.amortize_loan(
             apr, years, amount, yearly_compounds)
 
         return amort_sched[current_period][2]
@@ -51,7 +51,7 @@ class Loan(Base):
     def calc_payment_ipart(
         apr, years, amount, yearly_compounds, current_period):
         
-        amort_sched = Loan.calc_amort_sched(
+        amort_sched = Loan.amortize_loan(
             apr, years, amount, yearly_compounds)
 
         return amort_sched[current_period][1]
@@ -62,7 +62,7 @@ class Loan(Base):
     def calc_principle_paid(
         apr, years, amount, yearly_compounds, current_period):
 
-        amort_sched = Loan.calc_amort_sched(
+        amort_sched = Loan.amortize_loan(
             apr, years, amount, yearly_compounds)
 
         period = 1
@@ -79,7 +79,7 @@ class Loan(Base):
     def calc_principle_remaining(
         apr, years, amount, yearly_compounds, current_period):
 
-        amort_sched = Loan.calc_amort_sched(
+        amort_sched = Loan.amortize_loan(
             apr, years, amount, yearly_compounds)
 
         period = current_period + 1
@@ -105,7 +105,7 @@ class Loan(Base):
     def calc_interest_paid(
         apr, years, amount, yearly_compounds, current_period):
 
-        amort_sched = Loan.calc_amort_sched(
+        amort_sched = Loan.amortize_loan(
             apr, years, amount, yearly_compounds)
 
         period = 1
@@ -121,7 +121,7 @@ class Loan(Base):
     def calc_interest_remaining(
         apr, years, amount, yearly_compounds, current_period):
 
-        amort_sched = Loan.calc_amort_sched(
+        amort_sched = Loan.amortize_loan(
             apr, years, amount, yearly_compounds)
 
         period = current_period + 1
