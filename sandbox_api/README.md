@@ -1,3 +1,15 @@
+
+### Notes:
+* What is currently built
+  * Basic authentication
+  * SSL (need key on droplet though)
+  * Basic loan calculator
+  * Unittests for loan calc
+  * Dev and prod server deployment options
+  * Basic error handling
+  * Help documentation
+  *
+
 ### Instructions for setting up:
 1. Download repo 
 ```
@@ -22,6 +34,3 @@ pip install -r requirements.txt
 ```
 python run.py
 ```
-
-### Notes:
-* 
