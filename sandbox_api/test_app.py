@@ -29,7 +29,7 @@ class TestLoan(unittest.TestCase):
         # TODO: should be 5249.38 
         result = Loan.calc_principle_remaining(0.04, 5, 10000, 12, 30)
         self.assertEqual(result, 5249.53)
-
+#--Got here
 
     # Interest --------------------------------------------------------
     def test_calc_total_interest(self):
@@ -56,6 +56,7 @@ class TestLoan(unittest.TestCase):
     
     def test_calc_total_remaining(self):
         # TODO: should be ----
+        self.assertTrue(False)
         result = Loan.calc_total_remaining(0.04, 5, 10000, 12, 60)
         self.assertEqual(result, 0)
     
